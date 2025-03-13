@@ -20,3 +20,5 @@ __pycache__/
 # ignore vitual environment
 venv/
 .env
+# ignore literature folder
+literature/
