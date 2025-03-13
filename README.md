@@ -46,7 +46,7 @@ english_ratings-00003.tsv
 Warning: this should be applied to 16 ratings tsv files
 trap: Although the data documentation [here](https://communitynotes.x.com/guide/en/under-the-hood/download-data) uniformly refers to all TSV files as using `participantId`, in the actual dataset, different TSV files may have different names for it, such as `raterParticipantId` and `noteAuthorParticipantId`.
 
-5. random sampling
+3. random sampling
    notebook: sample-data-extractor.ipynb
 
 input:
@@ -54,4 +54,12 @@ english_only/english_noteStatusHistory-00000.tsv,
 english_userEnrollment-00000.tsv,
 english_ratings-00003.tsv
 
-output: samples
+output: 
+samples/sample_english_noteStatusHistory-00000.tsv
+sample_english_notes-00000.tsv
+sample_english_ratings-00003.tsv
+sample_english_userEnrollment-00000.tsv
+
+4. BTM
+   ALL llm recommeneded python package "biterm" and it turned out to be not available. I tried all night trying to install it ...
+
