@@ -1,0 +1,22 @@
+# ignore data and data folders
+data/
+*.tsv
+*.csv
+*.json
+*.parquet
+
+# ignore logs and caches
+*.log
+*.out
+*.err
+*.cache/
+__pycache__/
+*.pyc
+*.pyo
+
+# ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# ignore vitual environment
+venv/
+.env
