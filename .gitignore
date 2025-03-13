@@ -24,3 +24,5 @@ venv/
 .env
 # ignore literature folder
 literature/
+# apple hidden file
+.DS_Store
