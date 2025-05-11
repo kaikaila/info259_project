@@ -1,65 +1,102 @@
-in Terminal
-cd to your project root folder
+# NLP Preprocessing Pipeline (Community Notes)
 
-# create and activate the virtual environment
+This repository contains only the **pre-processing** steps for the Community Notes NLP project.  
+Subsequent steps—topic modeling (BERTopic) and knowledge graph construction—are maintained in separate repositories:
 
-python3 -m venv .venv
-source .venv/bin/activate
-
-# make sure requirements.txt is in your project root folder!
-
-pip install -r requirements.txt
-
-# register the venv as a kernal
-
-pip install jupyter
-python -m ipykernel install --user --name=.venv --display-name "Python - Twitter Notes (.venv)"
-
-# choose kernal in jupyter notebook
-
-in jupyter notebook, upper right corner, select kernal "Python - Twitter Notes (.venv)"
-kernal -> restart kernal
+- **BERTopic repo:** <BERTopic_REPO_URL>
+- **Knowledge Graph repo:** <KG_REPO_URL>
 
 ---
 
-1. filter by "summary" field to keep only the community notes(CM) in English by languageDetext
-   comment:intput is 800mb, output is 500mb
-   notebook: Filter English Community Notes - English.ipynb
-   input: raw/notes-00000.tsv
-   output:
-   english_only/english_notes-00000.tsv
-   language_distribution.png
+## 1. Environment Setup
 
-2. filter other tsv files, only keep the rows that has connection with a English CM.
-   notebook: filter_related_data.ipynb
+1. **Create and activate a virtual environment**
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+2. **Install Python dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **(Optional) Register Jupyter kernel**
+   ```bash
+   pip install jupyter
+   python -m ipykernel install --user --name=preproc-venv --display-name "Python - Community Notes (.venv)"
+   ```
 
-intput:
-raw/noteStatusHistory-00000.tsv,
-ratings-00003.tsv,
-userEnrollment-00000.tsv
+---
 
-output:
-english_only/english_noteStatusHistory-00000.tsv,
-english_userEnrollment-00000.tsv,
-english_ratings-00003.tsv
+## 2. Directory Structure
 
-Warning: this should be applied to 16 ratings tsv files
-trap: Although the data documentation [here](https://communitynotes.x.com/guide/en/under-the-hood/download-data) uniformly refers to all TSV files as using `participantId`, in the actual dataset, different TSV files may have different names for it, such as `raterParticipantId` and `noteAuthorParticipantId`.
+```
+project/
+├── code/                         # Jupyter notebooks for each preprocessing step
+│   ├── 1_Filter_English_Community_Notes_English.ipynb
+│   ├── 2_Filter_Related_Data.ipynb
+│   └── 3_Random_Sampling.ipynb
+├── scripts/
+│   ├── fetch_data.sh             # Download fixed snapshot (2025-03-08)
+│   └── runout.sh                 # One-click run: fetch + execute notebooks
+├── data/
+│   ├── raw/                      # Raw TSV files (snapshot 2025-03-08)
+│   ├── english_only/             # Filtered English TSV outputs
+│   ├── samples/                  # Random sampling outputs (seed fixed)
+│   └── KG/                       # Placeholder for knowledge graph outputs
+├── requirements.txt              # Python dependencies
+└── README.md                     # This file
+```
 
-3. random sampling
-   notebook: sample-data-extractor.ipynb
+---
 
-input:
-english_only/english_noteStatusHistory-00000.tsv,
-english_userEnrollment-00000.tsv,
-english_ratings-00003.tsv
+## 3. One-Click Installation & Execution
 
-output: 
-samples/sample_english_noteStatusHistory-00000.tsv
-sample_english_notes-00000.tsv
-sample_english_ratings-00003.tsv
-sample_english_userEnrollment-00000.tsv
+To run the entire preprocessing pipeline in one command:
 
-4. BTM
-   ALL llm recommeneded python package "biterm" and it turned out to be not available. I tried all night trying to install it ...
+```bash
+bash scripts/runout.sh
+```
 
+### What Happens Under the Hood
+
+1. **Download Data Snapshot**
+   - `scripts/fetch_data.sh 2025/03/08` fetches the archived **2025-03-08** data snapshot.
+2. **Execute Notebooks**
+   - Runs `code/1_Filter_English_Community_Notes_English.ipynb`
+   - Runs `code/2_Filter_Related_Data.ipynb`
+   - Runs `code/3_Random_Sampling.ipynb`
+3. **Generate Outputs**
+   - Filtered data → `data/english_only/`
+   - Sampled data → `data/samples/`
+
+---
+
+## 4. Reproducibility Details
+
+### 4.1 Fixed Data Snapshot
+
+- Command:
+  ```bash
+  bash scripts/fetch_data.sh 2025/03/08
+  ```
+- This ensures everyone uses the same archived snapshot.
+- Download URL pattern:
+  ```
+  https://ton.twimg.com/birdwatch-public-data/2025/03/08/notes-00000.zip
+  ```
+
+### 4.2 Deterministic Random Sampling
+
+- All sampling notebooks initialize the random seed to `42`.
+- The resulting sample CSV files are also committed under `data/samples/` for quick verification.
+
+---
+
+## 5. Next Steps
+
+After completing preprocessing:
+
+- **Topic Modeling (BERTopic):** see the BERTopic repository at `<BERTopic_REPO_URL>`.
+- **Knowledge Graph:** see the Knowledge Graph repository at `<KG_REPO_URL>`.
+
+If you encounter any issues or need help with integration, please open an issue or a pull request.
