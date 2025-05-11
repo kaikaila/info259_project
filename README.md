@@ -4,7 +4,7 @@ This repository contains only the **pre-processing** steps for the Community Not
 Subsequent steps—topic modeling (BERTopic) and knowledge graph construction—are maintained in separate repositories:
 
 - **BERTopic repo:** <BERTopic_REPO_URL>
-- **Knowledge Graph repo:** <KG_REPO_URL>
+- **Knowledge Graph repo:** <https://github.com/courtofdreams/llm-kag-communitynote>
 
 ---
 
@@ -97,6 +97,6 @@ bash scripts/runout.sh
 After completing preprocessing:
 
 - **Topic Modeling (BERTopic):** see the BERTopic repository at `<BERTopic_REPO_URL>`.
-- **Knowledge Graph:** see the Knowledge Graph repository at `<KG_REPO_URL>`.
+- **Knowledge Graph:** see the Knowledge Graph repository at `<https://github.com/courtofdreams/llm-kag-communitynoteKG_REPO_URL>`.
 
 If you encounter any issues or need help with integration, please open an issue or a pull request.
