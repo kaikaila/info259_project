@@ -16,7 +16,7 @@ __pycache__/
 
 # ignore Jupyter Notebook checkpoints
 .ipynb_checkpoints/
-
+sample_data_for_paper.xlsx
 # ignore vitual environment
 # ignore virtual environment
 .venv/
