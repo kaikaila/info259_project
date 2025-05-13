@@ -3,7 +3,7 @@
 This repository contains only the **pre-processing** steps for the Community Notes NLP project.  
 Subsequent steps—topic modeling (BERTopic) and knowledge graph construction—are maintained in separate repositories:
 
-- **BERTopic repo:** <BERTopic_REPO_URL>
+- **BERTopic repo:** <https://github.com/bhirajaya/NLP25-CommuNotes-TopicModel>
 - **Knowledge Graph repo:** <https://github.com/courtofdreams/llm-kag-communitynote>
 
 ---
@@ -96,7 +96,7 @@ bash scripts/runout.sh
 
 After completing preprocessing:
 
-- **Topic Modeling (BERTopic):** see the BERTopic repository at `<BERTopic_REPO_URL>`.
+- **Topic Modeling (BERTopic):** see the BERTopic repository at `<https://github.com/bhirajaya/NLP25-CommuNotes-TopicModel>`.
 - **Knowledge Graph:** see the Knowledge Graph repository at `<https://github.com/courtofdreams/llm-kag-communitynoteKG_REPO_URL>`.
 
 If you encounter any issues or need help with integration, please open an issue or a pull request.
